@@ -1,7 +1,6 @@
 package com.dmadunts.samples.mvpsample.model
 
 class CreatureGenerator {
-
     fun generateCreature(
         attributes: CreatureAttributes,
         name: String = "",
