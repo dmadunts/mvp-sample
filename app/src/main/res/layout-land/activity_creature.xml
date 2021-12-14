@@ -22,10 +22,52 @@
     android:id="@+id/avatarImageView"
     android:layout_width="160dp"
     android:layout_height="160dp"
+    android:layout_marginEnd="8dp"
     android:contentDescription="@string/avatar"
-    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/guideline"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.5" />
+
+  <TextView
+    android:id="@+id/hitPointsLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_16"
+    android:text="@string/hit_points"
+    android:textSize="28sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="@+id/guideline"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="@string/hit_points" />
+
+  <TextView
+    android:id="@+id/hitPoints"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="72sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="@+id/guideline"
+    app:layout_constraintTop_toBottomOf="@+id/hitPointsLabel"
+    tools:text="999" />
+
+  <Button
+    android:id="@+id/saveButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_16"
+    android:text="@string/save"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/nameEditText"
+    app:layout_constraintTop_toBottomOf="@+id/hitPoints" />
 
   <TextView
     android:id="@+id/nameLabel"
@@ -45,7 +87,7 @@
     android:hint="@string/creature_name"
     android:inputType="text"
     app:layout_constraintBaseline_toBaselineOf="@+id/nameLabel"
-    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/saveButton"
     app:layout_constraintStart_toEndOf="@+id/nameLabel" />
 
   <TextView
@@ -104,39 +146,5 @@
     app:layout_constraintBaseline_toBaselineOf="@+id/enduranceLabel"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/intelligenceLabel" />
-
-  <TextView
-    android:id="@+id/hitPointsLabel"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dp_16"
-    android:text="@string/hit_points"
-    android:textSize="28sp"
-    android:textStyle="bold"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/enduranceLabel"
-    tools:text="@string/hit_points" />
-
-  <TextView
-    android:id="@+id/hitPoints"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="72sp"
-    android:textStyle="bold"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/hitPointsLabel"
-    tools:text="999" />
-
-  <Button
-    android:id="@+id/saveButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dp_16"
-    android:text="@string/save"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/hitPoints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

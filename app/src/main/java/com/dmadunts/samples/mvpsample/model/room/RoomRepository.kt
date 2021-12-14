@@ -1,24 +1,23 @@
 package com.dmadunts.samples.mvpsample.model.room
-import android.os.AsyncTask
+
 import com.dmadunts.samples.mvpsample.app.ApplicationLoader
 import com.dmadunts.samples.mvpsample.model.Creature
 import com.dmadunts.samples.mvpsample.model.CreatureRepository
-import com.dmadunts.samples.mvpsample.model.room.CreatureDao
+import kotlinx.coroutines.flow.Flow
 
 class RoomRepository : CreatureRepository {
-    private val creatureDao: CreatureDao = ApplicationLoader.database.creatureDao()
+    private val creatureDao: CreatureDao by lazy { ApplicationLoader.database.creatureDao() }
+    private val allCreatures: Flow<List<Creature>> by lazy { creatureDao.getAllCreatures() }
 
-    private class InsertAsyncTask internal constructor(private val dao: CreatureDao) :
-        AsyncTask<Creature, Void, Void>() {
-        override fun doInBackground(vararg params: Creature): Void? {
-            return null
-        }
+    override suspend fun saveCreature(creature: Creature) {
+        creatureDao.insert(creature)
     }
 
-    private class DeleteAsyncTask internal constructor(private val dao: CreatureDao) :
-        AsyncTask<Creature, Void, Void>() {
-        override fun doInBackground(vararg params: Creature): Void? {
-            return null
-        }
+    override suspend fun getAllCreatures(): Flow<List<Creature>> {
+        return allCreatures
+    }
+
+    override suspend fun clearAllCreatures() {
+        creatureDao.clearCreatures()
     }
 }

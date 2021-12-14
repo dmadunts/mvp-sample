@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import com.dmadunts.samples.mvpsample.R
 import com.dmadunts.samples.mvpsample.databinding.ActivityCreatureBinding
 import com.dmadunts.samples.mvpsample.model.AttributeStore
@@ -14,8 +13,10 @@ import com.dmadunts.samples.mvpsample.model.AttributeValue
 import com.dmadunts.samples.mvpsample.model.Avatar
 import com.dmadunts.samples.mvpsample.view.avatars.AvatarAdapter
 import com.dmadunts.samples.mvpsample.view.avatars.AvatarBottomDialogFragment
+import com.dmadunts.samples.mvpsample.view.base.BaseActivity
 
-class CreatureActivity : AppCompatActivity(), AvatarAdapter.AvatarListener {
+class CreatureActivity : BaseActivity(), AvatarAdapter.AvatarListener {
+    private val TAG = this::class.java.simpleName
     private lateinit var binding: ActivityCreatureBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
