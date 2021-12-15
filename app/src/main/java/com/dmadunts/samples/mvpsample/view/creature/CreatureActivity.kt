@@ -6,6 +6,8 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.dmadunts.samples.mvpsample.R
 import com.dmadunts.samples.mvpsample.databinding.ActivityCreatureBinding
 import com.dmadunts.samples.mvpsample.model.AttributeStore
@@ -17,6 +19,7 @@ import com.dmadunts.samples.mvpsample.presenter.CreaturePresenter
 import com.dmadunts.samples.mvpsample.view.avatars.AvatarAdapter
 import com.dmadunts.samples.mvpsample.view.avatars.AvatarBottomDialogFragment
 import com.dmadunts.samples.mvpsample.view.base.BaseActivity
+import kotlinx.coroutines.launch
 
 class CreatureActivity : BaseActivity(), CreatureContract.View, AvatarAdapter.AvatarListener {
     private lateinit var binding: ActivityCreatureBinding
@@ -110,7 +113,9 @@ class CreatureActivity : BaseActivity(), CreatureContract.View, AvatarAdapter.Av
         }
 
         binding.saveButton.setOnClickListener {
-            // TODO: handle save button clicked
+            lifecycleScope.launch {
+                presenter.saveCreature()
+            }
         }
     }
 
@@ -129,5 +134,14 @@ class CreatureActivity : BaseActivity(), CreatureContract.View, AvatarAdapter.Av
 
     override fun showAvatarDrawable(resourceId: Int) {
         binding.avatarImageView.setImageResource(resourceId)
+    }
+
+    override fun showCreatureSaved() {
+        Toast.makeText(this, R.string.creature_saved, Toast.LENGTH_SHORT).show()
+        finish()
+    }
+
+    override fun showCreatureSavedError() {
+        Toast.makeText(this, R.string.error_saving_creature, Toast.LENGTH_SHORT).show()
     }
 }
